@@ -20,7 +20,7 @@
 	<div class="form-group">
           <label class="col-md-4 control-label" for="textinput">Peso</label>
           <div class="col-md-6">
-            <input id="textinput" name="Peso" type="text" placeholder="00,00 kg" class="form-control input-md" value=""> <span class="help-block">Coloque aqui o seu peso em kilos. Ex.: 63 </span>
+            <input id="textinput" name="Peso" type="text" placeholder="00 kg" class="form-control input-md" value=""> <span class="help-block">Coloque aqui o seu peso em kilos. Ex.: 63 </span>
           </div>
         </div>
 
@@ -64,52 +64,47 @@
 
 		double altura = Double.parseDouble(alturaS);
 		double peso = Double.parseDouble(pesoS);
+		double sexo = Double.parseDouble(sexoS);
 		double imc = peso / (altura * altura);
 		alturaS = (alturaS == null ? "0" : alturaS);
-
-		if (altura == 0) {
-    		%><div class="alert alert-danger" role="alert">Informe uma altura válida.</div><%
-    	}
-
-		pesoS = (pesoS == null ? "0" : pesoS);
-
-      	if (peso == 0) {
-   			 %><div class="alert alert-danger" role="alert">Informe um peso válido.</div><%
-      	}
-
-		if(sexoS == "1"){
+	   
+		if(sexo == 1){
 			
 			if(imc <= 19.1){
-				%><div class="alert alert-danger" role="alert">Abaixo do peso!</div><%
+				out.print ("<div class='alert alert-danger' role='alert'>Abaixo do peso!</div>");
 			}else if(imc > 19.1 && imc <= 25.8){
-				%><div class="alert alert-danger" role="alert">No peso normal.</div><%
+				out.print ("<div class='alert alert-success' role='alert'>No peso ideal!</div>");
 			}else if(imc > 25.8 && imc <= 27.3){
-				%><div class="alert alert-danger" role="alert">Marginalmente acima do peso.</div><%
+				out.print ("<div class='alert alert-info' role='alert'>Marginalmente acima do peso!</div>");
 			}else if(imc > 27.3 && imc <= 32.3){
-				%><div class="alert alert-danger" role="alert">Acima do peso ideal!!</div><%
+				out.print ("<div class='alert alert-warning' role='alert'>Acima do peso!</div>");
 			}else if(imc > 32.3){
-				%><div class="alert alert-danger" role="alert">Obeso!!!!!!</div><%
+				out.print ("<div class='alert alert-danger' role='alert'>Obeso!</div>");
 			}
 		}
 
-		if(sexoS == "2"){
+		if(sexo == 2){
 			
 			if(imc <= 20.7){
-				%><div class="alert alert-danger" role="alert">Abaixo do peso!</div><%
+				out.print ("<div class='alert alert-danger' role='alert'>Abaixo do peso!</div>");
 			}else if(imc > 20.7 && imc <= 26.4){
-				%><div class="alert alert-danger" role="alert">No peso normal.</div><%
+				out.print ("<div class='alert alert-success' role='alert'>No peso ideal!</div>");
 			}else if(imc > 26.4 && imc <= 27.8){
-				%><div class="alert alert-danger" role="alert">Marginalmente acima do peso.</div><%
+				out.print ("<div class='alert alert-info' role='alert'>Marginalmente acima do peso!</div>");
 			}else if(imc > 27.8 && imc <= 31.1){
-				%><div class="alert alert-danger" role="alert">Acima do peso ideal!!</div><%
+				out.print ("<div class='alert alert-warning' role='alert'>Acima do peso!</div>");
 			}else if(imc > 31.1){
-				%><div class="alert alert-danger" role="alert">Obeso!!!!!!</div><%
+				out.print ("<div class='alert alert-danger' role='alert'>Obeso!</div>");
 			}
 		}
 
       } catch (Exception e) {
+		
       }
-
+		
+		if(alturaS != null && pesoS != null){
+			out.println("<div class='alert alert-info'>Preencha os campos corretamente!</div>");
+		}
 			
 
 %>
